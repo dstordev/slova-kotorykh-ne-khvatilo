@@ -33,7 +33,7 @@ typeCheckingMode = "standard"
 reportMissingTypeStubs = false
 
 [project.scripts]
-slova-kotorykh-ne-khvatilo = "slova_kotorykh_ne_khvatilo:main"
+slova-kotorykh-ne-khvatilo = "slova_kotorykh_ne_khvatilo.main:main"
 
 [build-system]
 requires = ["uv_build>=0.13.1,<0.14.0"]
