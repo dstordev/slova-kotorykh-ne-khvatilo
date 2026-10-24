@@ -5,6 +5,9 @@ from loguru import logger
 from slova_kotorykh_ne_khvatilo.db.session import Database
 from slova_kotorykh_ne_khvatilo.handlers import main_router
 from slova_kotorykh_ne_khvatilo.middlewares import DBRepositoriesMiddleware
+from slova_kotorykh_ne_khvatilo.middlewares.auto_registration import (
+    AutoRegistrationMiddleware,
+)
 from slova_kotorykh_ne_khvatilo.settings import get_settings
 
 
@@ -18,6 +21,8 @@ def main() -> None:
 
     dp = Dispatcher()
     dp.update.outer_middleware.register(DBRepositoriesMiddleware(database.get_session))
+    dp.message.middleware.register(AutoRegistrationMiddleware())
+    dp.callback_query.middleware.register(AutoRegistrationMiddleware())
     dp.include_router(main_router)
     setup_dialogs(dp)
 
