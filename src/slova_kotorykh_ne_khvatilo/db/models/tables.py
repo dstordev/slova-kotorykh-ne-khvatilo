@@ -49,6 +49,7 @@ class Message(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     text: Mapped[str]
     from_user: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    view_count: Mapped[int] = mapped_column(server_default=sa.text("0"))
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
