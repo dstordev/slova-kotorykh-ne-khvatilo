@@ -1,14 +1,12 @@
 from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncSession
 
 from slova_kotorykh_ne_khvatilo.db.models import TelegramUser, User
 
+from .base import BaseRepository
 
-class UserRepository:
+
+class UserRepository(BaseRepository):
     """Репозиторий для работы с пользователем."""
-
-    def __init__(self, session: AsyncSession) -> None:
-        self._session = session
 
     async def create(
         self,
