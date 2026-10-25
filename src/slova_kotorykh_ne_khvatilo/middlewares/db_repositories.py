@@ -6,7 +6,7 @@ from aiogram.dispatcher.middlewares.base import BaseMiddleware
 from aiogram.types import TelegramObject
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from slova_kotorykh_ne_khvatilo.db.repositories.user import UserRepository
+from slova_kotorykh_ne_khvatilo.db.repositories import MessageRepository, UserRepository
 
 
 class DBRepositoriesMiddleware(BaseMiddleware):
@@ -26,5 +26,6 @@ class DBRepositoriesMiddleware(BaseMiddleware):
 
         async with self.getter_session() as session:
             data["user_repository"] = UserRepository(session)
+            data["message_repository"] = MessageRepository(session)
 
             await handler(event, data)
