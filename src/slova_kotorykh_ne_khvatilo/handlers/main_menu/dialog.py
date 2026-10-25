@@ -4,7 +4,7 @@ from aiogram_dialog.widgets.text import Const
 
 from .states import MainMenuSG
 
-dialog = Dialog(
+main_menu_dialog = Dialog(
     Window(
         Const(
             "😺 Привет!\n"
