@@ -18,8 +18,14 @@ async def get_random_message(
     ]
     random_message = await message_repository.get_random_message()
     random_message_text = random_message.text if random_message else "none"
+    random_message_date = (
+        str(random_message.created_at.date()) if random_message else "Неизвестно"
+    )
 
-    return {"random_message_text": html.quote(random_message_text)}
+    return {
+        "random_message_text": html.quote(random_message_text),
+        "random_message_date": random_message_date,
+    }
 
 
 pick_up_message_dialog = Dialog(
@@ -27,6 +33,7 @@ pick_up_message_dialog = Dialog(
         Multi(
             Const("📬 <b>Послание</b>:"),
             Format("<blockquote>{random_message_text}</blockquote>"),
+            Format("<i>Дата послания: {random_message_date}</i>"),
         ),
         Cancel(Const("◀️")),
         state=PickUpMessageSG.main,
