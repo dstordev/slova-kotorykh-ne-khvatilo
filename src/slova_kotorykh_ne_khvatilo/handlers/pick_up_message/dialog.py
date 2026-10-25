@@ -31,6 +31,5 @@ pick_up_message_dialog = Dialog(
         Cancel(Const("◀️")),
         state=PickUpMessageSG.main,
         getter=get_random_message,
-        parse_mode="html",
     )
 )

@@ -1,6 +1,7 @@
 import asyncio
 
 from aiogram import Bot, Dispatcher
+from aiogram.client.default import DefaultBotProperties
 from aiogram_dialog import setup_dialogs
 from loguru import logger
 
@@ -34,7 +35,9 @@ async def _main() -> None:
     dp.include_router(main_router)
     setup_dialogs(dp)
 
-    bot = Bot(settings.telegram_bot_token)
+    bot = Bot(
+        settings.telegram_bot_token, default=DefaultBotProperties(parse_mode="HTML")
+    )
 
     await dp.start_polling(bot)
 
