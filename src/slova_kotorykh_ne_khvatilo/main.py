@@ -4,7 +4,7 @@ from aiogram import Bot, Dispatcher
 from aiogram_dialog import setup_dialogs
 from loguru import logger
 
-from slova_kotorykh_ne_khvatilo.db.session import Database
+from slova_kotorykh_ne_khvatilo.db.session import DatabaseSession
 from slova_kotorykh_ne_khvatilo.db.utils.ping import ping_database
 from slova_kotorykh_ne_khvatilo.handlers import main_router
 from slova_kotorykh_ne_khvatilo.middlewares import DBRepositoriesMiddleware
@@ -20,7 +20,7 @@ async def _main() -> None:
         logger.info("Закрываем приложение...")
         return
 
-    database = Database(settings.database_url)
+    database = DatabaseSession(settings.database_url)
 
     if not await ping_database(database):
         logger.warning("Не удалось подключится БД. Закрываем приложение...")

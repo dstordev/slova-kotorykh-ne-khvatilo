@@ -1,10 +1,10 @@
 import sqlalchemy as sa
 from loguru import logger
 
-from slova_kotorykh_ne_khvatilo.db.session import Database
+from slova_kotorykh_ne_khvatilo.db.session import DatabaseSession
 
 
-async def ping_database(database: Database) -> bool:
+async def ping_database(database: DatabaseSession) -> bool:
     """Пингует БД."""
 
     async with database.get_session() as session:
