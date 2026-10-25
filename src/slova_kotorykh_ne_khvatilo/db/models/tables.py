@@ -13,11 +13,11 @@ class TelegramUser(Base):
     __tablename__ = "telegram_users"
 
     id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=False)
-    username: Mapped[str | None] = mapped_column(nullable=True, unique=True)
+    username: Mapped[str | None] = mapped_column(unique=True)
     first_name: Mapped[str]
-    last_name: Mapped[str | None] = mapped_column(nullable=True)
+    last_name: Mapped[str | None]
     is_bot: Mapped[bool]
-    language_code: Mapped[str | None] = mapped_column(nullable=True)
+    language_code: Mapped[str | None]
 
     user: Mapped[User | None] = relationship(
         back_populates="telegram_user", lazy="joined"
